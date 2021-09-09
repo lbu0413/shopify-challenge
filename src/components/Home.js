@@ -4,6 +4,8 @@ import axios from "axios";
 import styled from "styled-components";
 
 const API_KEY = "wZ6sdAEOi88UthBmNdFFNB4RAiZclTNazxyHJ2Wi";
+// https://api.nasa.gov/
+// https://www.shopify.com/careers/frontend-developer-intern-remote-winter-2022-6932cbed
 
 const StyledHome = styled.div`
 	font-family: "Kaisei Tokumin", serif;
@@ -26,7 +28,9 @@ const StyledHome = styled.div`
 	}
 
 	.dataLike {
+		width: 600px;
 		display: flex;
+		justify-content: flex-start;
 		align-items: center;
 		margin: 10px;
 		cursor: pointer;
