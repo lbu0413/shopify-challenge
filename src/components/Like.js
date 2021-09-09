@@ -1,4 +1,25 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+
+const StyledLike = styled.div`
+	.dataLike {
+		width: 600px;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		margin: 10px;
+		cursor: pointer;
+		border: none;
+		padding: 0;
+	}
+	.dataLike i {
+		font-size: 1.5rem;
+		margin: 5px;
+	}
+	.fa-heart {
+		color: red;
+	}
+`;
 
 const Like = () => {
 	const [like, setLike] = useState(100);
@@ -33,14 +54,16 @@ const Like = () => {
 	};
 
 	return (
-		<div className="dataLike" onClick={updateLike}>
-			{pressedLike === false ? (
-				<i className="far fa-heart"></i>
-			) : (
-				<i className="fas fa-heart"></i>
-			)}
-			{like > 0 ? like : null}
-		</div>
+		<StyledLike>
+			<div className="dataLike" onClick={updateLike}>
+				{pressedLike === false ? (
+					<i className="far fa-heart"></i>
+				) : (
+					<i className="fas fa-heart"></i>
+				)}
+				{like > 0 ? like : null}
+			</div>
+		</StyledLike>
 	);
 };
 

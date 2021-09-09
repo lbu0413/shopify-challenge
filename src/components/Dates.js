@@ -15,6 +15,7 @@ const StyledDates = styled.div`
 		font-size: 20px;
 		cursor: pointer;
 		border: none;
+		color: white;
 	}
 	.picker {
 		margin: 10%;
@@ -33,17 +34,27 @@ const StyledDates = styled.div`
 		text-decoration: underline;
 	}
 `;
+
 const Dates = ({ nasaData }) => {
-	let [selectedDate, setSelectedDate] = useState(new Date());
+	const formatDate = (sampleDate) => {
+		const year = sampleDate.getFullYear();
+		const month = (sampleDate.getMonth() + 1).toString().padStart(2, "0");
+		const date = sampleDate.getDate().toString().padStart(2, "0");
+		return `${year}-${month}-${date}`;
+	};
+
+	const [selectedDate, setSelectedDate] = useState(new Date());
+
 	return (
 		<StyledDates>
-			<DatePicker
+			<div className="dataDate">{nasaData.date}</div>
+			{/* <DatePicker
 				className="picker"
 				selected={selectedDate}
 				onChange={(date) => setSelectedDate(date)}
 				dateFormat="yyyy-MM-dd"
 				showYearDropdown
-			/>
+			/> */}
 		</StyledDates>
 	);
 };

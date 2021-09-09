@@ -9,5 +9,3 @@ ReactDOM.render(
 	</React.StrictMode>,
 	document.getElementById("root")
 );
-
-// wZ6sdAEOi88UthBmNdFFNB4RAiZclTNazxyHJ2Wi
