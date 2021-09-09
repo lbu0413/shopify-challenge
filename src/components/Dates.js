@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -32,9 +32,8 @@ const StyledDates = styled.div`
 	}
 `;
 const Dates = ({ nasaData }) => {
-	const defaultDate = `${nasaData.date}`;
-	console.log(defaultDate);
-	let [selectedDate, setSelectedDate] = useState(Date.parse(defaultDate));
+	const defaultDate = nasaData.date;
+	let [selectedDate, setSelectedDate] = useState(new Date());
 	return (
 		<StyledDates>
 			<DatePicker

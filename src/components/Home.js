@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Dates from "./Dates";
 import axios from "axios";
 import styled from "styled-components";
+import { API_KEY } from "./Keys";
 
-const API_KEY = "wZ6sdAEOi88UthBmNdFFNB4RAiZclTNazxyHJ2Wi";
 // https://api.nasa.gov/
 // https://www.shopify.com/careers/frontend-developer-intern-remote-winter-2022-6932cbed
 
@@ -86,11 +86,11 @@ const StyledHome = styled.div`
 		color: red;
 	}
 
-	.yesterday:hover,
+	/* .yesterday:hover,
 	.tomorrow:hover {
 		transform: scale(1.1);
 		transition: 0.3s;
-	}
+	} */
 `;
 
 const Home = () => {
