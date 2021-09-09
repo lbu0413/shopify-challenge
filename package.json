@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.4",
     "react": "^17.0.2",
+    "react-datepicker": "^4.2.1",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.1",
@@ -36,5 +37,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

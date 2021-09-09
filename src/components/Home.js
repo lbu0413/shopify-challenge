@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Dates from "./Dates";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -17,11 +18,6 @@ const StyledHome = styled.div`
 		display: flex;
 	}
 
-	.dataDate {
-		padding: 1%;
-		font-size: 20px;
-	}
-
 	.dataContainer {
 		display: flex;
 		flex-direction: column;
@@ -32,7 +28,7 @@ const StyledHome = styled.div`
 	.dataLike {
 		display: flex;
 		align-items: center;
-		margin: 0;
+		margin: 10px;
 		cursor: pointer;
 		border: none;
 		padding: 0;
@@ -46,7 +42,7 @@ const StyledHome = styled.div`
 		width: 90%;
 		display: flex;
 		justify-content: space-around;
-		align-items: center;
+		align-items: baseline;
 	}
 
 	.tomorrow,
@@ -74,6 +70,7 @@ const StyledHome = styled.div`
 	}
 
 	.dataInfo p {
+		margin: 0;
 		font-size: 14px;
 	}
 	.myself {
@@ -102,7 +99,6 @@ const Home = () => {
 			.get(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
 			.then((res) => {
 				setNasaData(res.data);
-				console.log(res.data);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -121,7 +117,7 @@ const Home = () => {
 	return (
 		<StyledHome>
 			<header>
-				<div className="dataDate">{nasaData.date}</div>
+				<Dates nasaData={nasaData} setNasaData={setNasaData} />
 			</header>
 			<div className="dataContainer">
 				<h2 className="dataTitle">{nasaData.title}</h2>
