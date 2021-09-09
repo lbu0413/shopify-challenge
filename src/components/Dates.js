@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
+import { API_KEY } from "./Keys";
 import "react-datepicker/dist/react-datepicker.css";
 
 const StyledDates = styled.div`
@@ -32,7 +34,6 @@ const StyledDates = styled.div`
 	}
 `;
 const Dates = ({ nasaData }) => {
-	const defaultDate = nasaData.date;
 	let [selectedDate, setSelectedDate] = useState(new Date());
 	return (
 		<StyledDates>
@@ -43,7 +44,6 @@ const Dates = ({ nasaData }) => {
 				dateFormat="yyyy-MM-dd"
 				showYearDropdown
 			/>
-			{/* <div className="dataDate">{nasaData.date}</div> */}
 		</StyledDates>
 	);
 };

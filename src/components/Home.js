@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Dates from "./Dates";
+import Like from "./Like";
 import axios from "axios";
 import styled from "styled-components";
 import { API_KEY } from "./Keys";
@@ -95,8 +96,6 @@ const StyledHome = styled.div`
 
 const Home = () => {
 	const [nasaData, setNasaData] = useState({});
-	const [like, setLike] = useState(100);
-	const [pressedLike, setPressedLike] = useState(false);
 
 	useEffect(() => {
 		axios
@@ -109,15 +108,6 @@ const Home = () => {
 			});
 	}, []);
 
-	const likeUpdate = () => {
-		if (pressedLike === false) {
-			setLike(like + 1);
-			setPressedLike(true);
-		} else {
-			setLike(like - 1);
-			setPressedLike(false);
-		}
-	};
 	return (
 		<StyledHome>
 			<header>
@@ -128,23 +118,13 @@ const Home = () => {
 				<div className="dataImage">
 					<div className="yesterday">
 						<i className="fas fa-arrow-left"></i>
-						<p>Yesterday</p>
 					</div>
 					<img src={nasaData.url} alt={nasaData.title} />
 					<div className="tomorrow">
 						<i className="fas fa-arrow-right"></i>
-						<p>Tomorrow</p>
 					</div>
 				</div>
-
-				<div className="dataLike" onClick={likeUpdate}>
-					{pressedLike === false ? (
-						<i className="far fa-heart"></i>
-					) : (
-						<i className="fas fa-heart"></i>
-					)}
-					{like > 0 ? like : null}
-				</div>
+				<Like />
 				<div className="dataInfo">
 					<p>{nasaData.explanation}</p>
 				</div>
