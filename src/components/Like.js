@@ -22,26 +22,17 @@ const StyledLike = styled.div`
 `;
 
 const Like = () => {
-	const [like, setLike] = useState(100);
-	const [pressedLike, setPressedLike] = useState(false);
-
-	useEffect(() => {
-		const numberOfLikesData = localStorage.getItem("numberOfLikes");
-		const likePressedData = localStorage.getItem("likePressed");
-		if (numberOfLikesData) {
-			setLike(parseInt(numberOfLikesData));
-		}
-		if (likePressedData === "true") {
-			setPressedLike(Boolean(true));
-		} else {
-			setPressedLike(Boolean(false));
-		}
-	}, []);
+	const [like, setLike] = useState(
+		parseInt(localStorage.getItem("numberOfLikes")) || 100
+	);
+	const [pressedLike, setPressedLike] = useState(
+		JSON.parse(localStorage.getItem("likePressed")) || false
+	);
 
 	useEffect(() => {
 		localStorage.setItem("numberOfLikes", like);
 		localStorage.setItem("likePressed", pressedLike);
-	});
+	}, [like, pressedLike]);
 
 	const updateLike = () => {
 		if (pressedLike === false) {
@@ -55,7 +46,7 @@ const Like = () => {
 
 	return (
 		<StyledLike>
-			<div className="dataLike" onClick={updateLike}>
+			<div className="dataLike" onClick={() => updateLike()}>
 				{pressedLike === false ? (
 					<i className="far fa-heart"></i>
 				) : (

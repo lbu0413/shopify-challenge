@@ -1,39 +1,22 @@
 import React, { useState, useEffect } from "react";
+import Loader from "./Loader";
 import Dates from "./Dates";
 import Like from "./Like";
-import axios from "axios";
+import client from "../lib/client";
+import formatDate from "../lib/formatDate";
 import styled from "styled-components";
-import { API_KEY } from "./Keys";
-import { ClipLoader } from "react-spinners";
-
-// https://api.nasa.gov/
-// https://www.shopify.com/careers/frontend-developer-intern-remote-winter-2022-6932cbed
 
 const StyledHome = styled.div`
 	font-family: "Kaisei Tokumin", serif;
 	box-sizing: border-box;
 	justify-content: center;
 	align-items: center;
-	background-color: black;
+	background-color: #1f1f1f;
 	color: white;
 	height: 100vh;
 
 	header {
 		display: flex;
-	}
-
-	.dataContainer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.dataImage {
-		width: 90%;
-		display: flex;
-		justify-content: space-around;
-		align-items: baseline;
 	}
 
 	.dayAfter,
@@ -44,127 +27,114 @@ const StyledHome = styled.div`
 		align-items: center;
 		color: white;
 	}
-	.dayBefore i,
-	.dayAfter i {
-		font-size: 2rem;
-		color: white;
-		cursor: pointer;
-	}
-
-	.dataImage img {
+`;
+const ImageContainer = styled.section`
+	& > img {
 		width: 400px;
 		height: 400px;
 		border: white;
+		border-radius: 12px;
 	}
-	.dataInfo {
-		width: 600px;
-	}
+	width: 90%;
+	display: flex;
+	justify-content: space-around;
+	align-items: baseline;
+`;
 
-	.dataInfo p {
+const Wrapper = styled.main`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`;
+
+const ArrowButtonWrapper = styled(Wrapper)`
+	color: white;
+	& > i {
+		font-size: 2rem;
+		cursor: pointer;
+	}
+`;
+
+const DataExplanation = styled.section`
+	width: 600px;
+	& > p {
 		margin: 0;
 		font-size: 14px;
 	}
-
-	.dataInfo .copyright {
+	& > p:last-child {
 		display: flex;
 		justify-content: flex-end;
 		margin-top: 5%;
 		font-size: 1rem;
 	}
-
-	/* .dayBefore:hover,
-	.tomorrow:hover {
-		transform: scale(1.1);
-		transition: 0.3s;
-	} */
 `;
 
-const StyledLoading = styled.div`
-	height: 100vh;
-	background-color: black;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
+const Title = styled.h2``;
 
-	h3,
-	.fa-space-shuttle {
-		color: white;
-	}
-
-	.fa-space-shuttle {
-		margin: 10px;
-		font-size: 40px;
-		animation: loading-animation 3s infinite;
-	}
-	@keyframes loading-animation {
-		0% {
-			transform: translateX(-300%);
-		}
-		50% {
-			transform: translateX(100%);
-		}
-		100% {
-			transform: translateX(300%);
-		}
-	}
-`;
+const initialData = {
+	date: "",
+	explanation: "",
+	hdurl: "",
+	media_type: "",
+	service_version: "",
+	title: "",
+	url: "",
+};
 
 const Home = () => {
-	const [nasaData, setNasaData] = useState({});
-	const [loading, setLoading] = useState(true);
-	const [loadingColor, setLoadingColor] = useState("#9013FE");
+	const [nasaData, setNasaData] = useState(initialData);
+	const [loading, setLoading] = useState(false);
+	const [selectedDate, setSelectedDate] = useState(new Date());
 
 	useEffect(() => {
-		axios
-			.get(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
-			.then((res) => {
-				setNasaData(res.data);
-				console.log(res.data);
-				setTimeout(() => {
-					setLoading(false);
-				}, 3000);
-			})
-			.catch((err) => {
-				console.error(err);
-			});
-	}, []);
+		const fetch = async () => {
+			setLoading(true);
+			const { data, status } = await client(formatDate(selectedDate));
+			if (status === 200) setNasaData(data);
+			setLoading(false);
+		};
+		fetch();
+	}, [selectedDate]);
+
+	const handleDate = (direction = 1) => {
+		const today = new Date();
+		const delta = 24 * 60 * 60 * 1000 * direction;
+		const resultDate = new Date(selectedDate.getTime() + delta);
+		if (resultDate > today) return;
+		setSelectedDate(resultDate);
+	};
 
 	return (
 		<>
 			{loading ? (
-				<StyledLoading>
-					<h3>Data from NASA just took off..</h3>
-					<i className="fas fa-space-shuttle"></i>
-					<ClipLoader
-						className="loadingScreen"
-						color={loadingColor}
-						loading={loading}
-						size={150}
-					/>
-				</StyledLoading>
+				<Loader />
 			) : (
 				<StyledHome>
 					<header>
-						<Dates nasaData={nasaData} setNasaData={setNasaData} />
+						<Dates
+							nasaData={nasaData}
+							selectedDate={selectedDate}
+							setSelectedDate={setSelectedDate}
+						/>
 					</header>
-					<div className="dataContainer">
-						<h2 className="dataTitle">{nasaData.title}</h2>
-						<div className="dataImage">
-							<div className="dayBefore">
+					<Wrapper>
+						<Title>{nasaData.title}</Title>
+						<ImageContainer>
+							<ArrowButtonWrapper onClick={() => handleDate(-1)}>
 								<i className="fas fa-arrow-left"></i>
-							</div>
+							</ArrowButtonWrapper>
 							<img src={nasaData.url} alt={nasaData.title} />
-							<div className="dayAfter">
+							<ArrowButtonWrapper onClick={() => handleDate()}>
 								<i className="fas fa-arrow-right"></i>
-							</div>
-						</div>
+							</ArrowButtonWrapper>
+						</ImageContainer>
 						<Like />
-						<div className="dataInfo">
+						<DataExplanation>
 							<p>{nasaData.explanation}</p>
-							<p className="copyright">©{nasaData.copyright}</p>
-						</div>
-					</div>
+							<p>©{nasaData.copyright}</p>
+						</DataExplanation>
+					</Wrapper>
 				</StyledHome>
 			)}
 		</>
