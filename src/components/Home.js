@@ -14,18 +14,8 @@ const StyledHome = styled.div`
 	background-color: #1f1f1f;
 	color: white;
 	height: 100vh;
-
-	header {
+	& > header {
 		display: flex;
-	}
-
-	.dayAfter,
-	.dayBefore {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		color: white;
 	}
 `;
 const ImageContainer = styled.section`
@@ -38,7 +28,7 @@ const ImageContainer = styled.section`
 	width: 90%;
 	display: flex;
 	justify-content: space-around;
-	align-items: baseline;
+	align-items: end;
 `;
 
 const Wrapper = styled.main`
@@ -51,6 +41,11 @@ const Wrapper = styled.main`
 const ArrowButtonWrapper = styled(Wrapper)`
 	color: white;
 	& > i {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		color: white;
 		font-size: 2rem;
 		cursor: pointer;
 	}
@@ -132,7 +127,11 @@ const Home = () => {
 						<Like />
 						<DataExplanation>
 							<p>{nasaData.explanation}</p>
-							<p>©{nasaData.copyright}</p>
+							{nasaData.copyright ? (
+								<p>©{nasaData.copyright}</p>
+							) : (
+								<p>{null}</p>
+							)}
 						</DataExplanation>
 					</Wrapper>
 				</StyledHome>

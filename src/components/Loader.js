@@ -4,7 +4,7 @@ import { ClipLoader } from "react-spinners";
 
 const StyledLoading = styled.div`
 	height: 100vh;
-	background-color: black;
+	background-color: #1f1f1f;
 	display: flex;
 	justify-content: center;
 	align-items: center;

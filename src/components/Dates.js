@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,9 +9,9 @@ const StyledDates = styled.div`
 	display: flex;
 `;
 const StyledDatePicker = styled(DatePicker)`
-	margin: 10%;
-	padding: 1%;
-	font-size: 1.5rem;
+	margin: 20px;
+	padding: 3px;
+	font-size: 1.3rem;
 	cursor: pointer;
 	background-color: #1f1f1f;
 	color: white;
