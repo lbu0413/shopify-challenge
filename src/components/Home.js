@@ -65,6 +65,9 @@ const DataExplanation = styled.section`
 		margin-top: 5%;
 		font-size: 1rem;
 	}
+	@media (max-width: 800px) {
+		width: 80%;
+	}
 `;
 
 const Title = styled.h2``;

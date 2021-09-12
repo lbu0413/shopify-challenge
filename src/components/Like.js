@@ -20,6 +20,12 @@ const StyledLike = styled.div`
 	.fa-heart {
 		color: #ff335a;
 	}
+	@media (max-width: 600px) {
+		.dataLike {
+			margin: 10px;
+			width: 400px;
+		}
+	}
 `;
 
 const likeStateData = {
