@@ -71,10 +71,12 @@ const DataExplanation = styled.section`
 		display: flex;
 		justify-content: flex-end;
 		margin: 20px;
-		font-size: 1rem;
 	}
 	@media (max-width: 800px) {
 		width: 80%;
+		& > p {
+			font-size: 13px;
+		}
 	}
 `;
 
