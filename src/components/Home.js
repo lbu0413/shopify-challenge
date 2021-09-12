@@ -11,8 +11,7 @@ const StyledHome = styled.div`
 	box-sizing: border-box;
 	justify-content: center;
 	align-items: center;
-	background-color: #1f1f1f;
-	color: white;
+	background-color: white;
 	height: 100vh;
 	& > header {
 		display: flex;
@@ -24,11 +23,15 @@ const ImageContainer = styled.section`
 		height: 400px;
 		border: white;
 		border-radius: 12px;
+		box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+			rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+			rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 	}
 	width: 90%;
 	display: flex;
 	justify-content: space-around;
 	align-items: end;
+	margin-bottom: 20px;
 `;
 
 const Wrapper = styled.main`
@@ -39,13 +42,12 @@ const Wrapper = styled.main`
 `;
 
 const ArrowButtonWrapper = styled(Wrapper)`
-	color: white;
 	& > i {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		color: white;
+		color: #1f1f1f;
 		font-size: 2rem;
 		cursor: pointer;
 	}
@@ -116,11 +118,13 @@ const Home = () => {
 						<Title>{nasaData.title}</Title>
 						<ImageContainer>
 							<ArrowButtonWrapper onClick={() => handleDate(-1)}>
-								<i className="fas fa-arrow-left"></i>
+								<i className="fas fa-chevron-left"></i>
 							</ArrowButtonWrapper>
 							<img src={nasaData.url} alt={nasaData.title} />
 							<ArrowButtonWrapper onClick={() => handleDate()}>
-								<i className="fas fa-arrow-right"></i>
+								{formatDate(selectedDate) !== formatDate(new Date()) ? (
+									<i className="fas fa-chevron-right"></i>
+								) : null}
 							</ArrowButtonWrapper>
 						</ImageContainer>
 						<Like selectedDate={selectedDate} />

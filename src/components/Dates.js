@@ -13,16 +13,12 @@ const StyledDatePicker = styled(DatePicker)`
 	padding: 3px;
 	font-size: 1.3rem;
 	cursor: pointer;
-	background-color: #1f1f1f;
-	color: white;
 	border: none;
+	box-shadow: rgba(0, 0, 0, 0.75) 1px 1px 1px 0px;
 
 	&:focus {
 		outline: none;
 		border: none;
-	}
-	&:hover {
-		text-decoration: underline;
 	}
 `;
 

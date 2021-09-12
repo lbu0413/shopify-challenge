@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import formatDate from "../lib/formatDate";
 
@@ -9,21 +9,21 @@ const StyledLike = styled.div`
 		justify-content: flex-start;
 		align-items: center;
 		margin: 10px;
-		cursor: pointer;
 		border: none;
 		padding: 0;
 	}
 	.dataLike i {
 		font-size: 1.5rem;
 		margin: 5px;
+		cursor: pointer;
 	}
 	.fa-heart {
-		color: red;
+		color: #ff335a;
 	}
 `;
 
 const likeStateData = {
-	numberOfLikes: 100,
+	numberOfLikes: 0,
 	likePressed: false,
 };
 

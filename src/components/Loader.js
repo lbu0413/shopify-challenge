@@ -4,7 +4,7 @@ import { ClipLoader } from "react-spinners";
 
 const StyledLoading = styled.div`
 	height: 100vh;
-	background-color: #1f1f1f;
+	background-color: white;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -12,7 +12,7 @@ const StyledLoading = styled.div`
 
 	h3,
 	.fa-space-shuttle {
-		color: white;
+		color: black;
 	}
 
 	.fa-space-shuttle {
@@ -40,7 +40,7 @@ const Loader = () => {
 			<i className="fas fa-space-shuttle"></i>
 			<ClipLoader
 				className="loadingScreen"
-				color="#9013FE"
+				color="#1f1f1f"
 				loading={true}
 				size={150}
 			/>
