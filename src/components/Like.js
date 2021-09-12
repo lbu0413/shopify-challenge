@@ -4,13 +4,10 @@ import formatDate from "../lib/formatDate";
 
 const StyledLike = styled.div`
 	.dataLike {
-		width: 600px;
+		width: 100%;
 		display: flex;
-		justify-content: flex-start;
 		align-items: center;
-		margin: 10px;
 		border: none;
-		padding: 0;
 	}
 	.dataLike i {
 		font-size: 1.5rem;
@@ -22,7 +19,6 @@ const StyledLike = styled.div`
 	}
 	@media (max-width: 600px) {
 		.dataLike {
-			margin: 10px;
 			width: 400px;
 		}
 	}

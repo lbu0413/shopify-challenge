@@ -7,10 +7,9 @@ import formatDate from "../lib/formatDate";
 import styled from "styled-components";
 
 const StyledHome = styled.div`
+	box-sizing: border-box;
 	font-family: "Kaisei Tokumin", serif;
 	box-sizing: border-box;
-	justify-content: center;
-	align-items: center;
 	background-color: white;
 	height: 100vh;
 	& > header {
@@ -27,11 +26,18 @@ const ImageContainer = styled.section`
 			rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
 			rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 	}
-	width: 90%;
+	width: 100%;
 	display: flex;
 	justify-content: space-around;
 	align-items: end;
 	margin-bottom: 20px;
+
+	@media (max-width: 800px) {
+		& > img {
+			width: 300px;
+			height: 300px;
+		}
+	}
 `;
 
 const Wrapper = styled.main`
@@ -39,6 +45,7 @@ const Wrapper = styled.main`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin: 0;
 `;
 
 const ArrowButtonWrapper = styled(Wrapper)`
@@ -55,6 +62,7 @@ const ArrowButtonWrapper = styled(Wrapper)`
 
 const DataExplanation = styled.section`
 	width: 600px;
+	padding: 10px;
 	& > p {
 		margin: 0;
 		font-size: 14px;
@@ -62,7 +70,7 @@ const DataExplanation = styled.section`
 	& > p:last-child {
 		display: flex;
 		justify-content: flex-end;
-		margin-top: 5%;
+		margin: 20px;
 		font-size: 1rem;
 	}
 	@media (max-width: 800px) {
@@ -70,7 +78,10 @@ const DataExplanation = styled.section`
 	}
 `;
 
-const Title = styled.h2``;
+const Title = styled.h2`
+	width: 80%;
+	text-align: center;
+`;
 
 const initialData = {
 	date: "",
@@ -130,8 +141,8 @@ const Home = () => {
 							) : null}
 						</ArrowButtonWrapper>
 					</ImageContainer>
-					{loading ? <Loader /> : <Like selectedDate={selectedDate} />}
 					<DataExplanation>
+						{loading ? <Loader /> : <Like selectedDate={selectedDate} />}
 						<p>{nasaData.explanation}</p>
 						{nasaData.copyright ? <p>©{nasaData.copyright}</p> : <p>{null}</p>}
 					</DataExplanation>
