@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import formatDate from "../lib/formatDate";
 
 const StyledLike = styled.div`
 	.dataLike {
@@ -21,38 +22,42 @@ const StyledLike = styled.div`
 	}
 `;
 
-const Like = () => {
-	const [like, setLike] = useState(
-		parseInt(localStorage.getItem("numberOfLikes")) || 100
-	);
-	const [pressedLike, setPressedLike] = useState(
-		JSON.parse(localStorage.getItem("likePressed")) || false
-	);
+const likeStateData = {
+	numberOfLikes: 100,
+	likePressed: false,
+};
 
-	useEffect(() => {
-		localStorage.setItem("numberOfLikes", like);
-		localStorage.setItem("likePressed", pressedLike);
-	}, [like, pressedLike]);
+const Like = ({ selectedDate }) => {
+	const formattedDate = formatDate(selectedDate);
+
+	const localStorageLike = JSON.parse(localStorage.getItem(formattedDate));
+	const [likeState, setLikeState] = useState(localStorageLike || likeStateData);
+	const { numberOfLikes, likePressed } = likeState;
 
 	const updateLike = () => {
-		if (pressedLike === false) {
-			setLike(like + 1);
-			setPressedLike(true);
-		} else {
-			setLike(like - 1);
-			setPressedLike(false);
-		}
+		localStorage.setItem(
+			formattedDate,
+			JSON.stringify({
+				...likeState,
+				numberOfLikes: likePressed ? numberOfLikes - 1 : numberOfLikes + 1,
+				likePressed: !likePressed,
+			})
+		);
+		setLikeState({
+			numberOfLikes: likePressed ? numberOfLikes - 1 : numberOfLikes + 1,
+			likePressed: !likePressed,
+		});
 	};
 
 	return (
 		<StyledLike>
 			<div className="dataLike" onClick={() => updateLike()}>
-				{pressedLike === false ? (
+				{likePressed === false ? (
 					<i className="far fa-heart"></i>
 				) : (
 					<i className="fas fa-heart"></i>
 				)}
-				{like > 0 ? like : null}
+				{numberOfLikes > 0 ? numberOfLikes : null}
 			</div>
 		</StyledLike>
 	);

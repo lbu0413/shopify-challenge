@@ -99,7 +99,6 @@ const Home = () => {
 		if (resultDate > today) return;
 		setSelectedDate(resultDate);
 	};
-
 	return (
 		<>
 			{loading ? (
@@ -124,7 +123,7 @@ const Home = () => {
 								<i className="fas fa-arrow-right"></i>
 							</ArrowButtonWrapper>
 						</ImageContainer>
-						<Like />
+						<Like selectedDate={selectedDate} />
 						<DataExplanation>
 							<p>{nasaData.explanation}</p>
 							{nasaData.copyright ? (
