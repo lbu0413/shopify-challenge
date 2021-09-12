@@ -17,6 +17,7 @@ const StyledHome = styled.div`
 	}
 	@media (max-width: 720px) {
 		width: 100%;
+		overflow-x: hidden;
 	}
 `;
 const ImageContainer = styled.section`
@@ -32,7 +33,7 @@ const ImageContainer = styled.section`
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
-	align-items: end;
+	align-items: baseline;
 	margin-bottom: 20px;
 
 	@media (max-width: 720px) {
@@ -52,11 +53,10 @@ const Wrapper = styled.main`
 `;
 
 const ArrowButtonWrapper = styled(Wrapper)`
+	.hidden {
+		visibility: hidden;
+	}
 	& > i {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 		color: #1f1f1f;
 		font-size: 2rem;
 		cursor: pointer;
@@ -141,17 +141,25 @@ const Home = () => {
 				<Wrapper>
 					<Title>{nasaData.title}</Title>
 					<ImageContainer>
-						<ArrowButtonWrapper onClick={() => handleDate(-1)}>
+						<ArrowButtonWrapper>
 							{formatDate(selectedDate) !==
 							formatDate(new Date("06-16-1995")) ? (
-								<i className="fas fa-chevron-left"></i>
-							) : null}
+								<i
+									className="fas fa-chevron-left"
+									onClick={() => handleDate(-1)}></i>
+							) : (
+								<i className="fas fa-chevron-left hidden"></i>
+							)}
 						</ArrowButtonWrapper>
 						<img src={nasaData.url} alt={nasaData.title} />
-						<ArrowButtonWrapper onClick={() => handleDate()}>
+						<ArrowButtonWrapper>
 							{formatDate(selectedDate) !== formatDate(new Date()) ? (
-								<i className="fas fa-chevron-right"></i>
-							) : null}
+								<i
+									className="fas fa-chevron-right"
+									onClick={() => handleDate()}></i>
+							) : (
+								<i className="fas fa-chevron-right hidden"></i>
+							)}
 						</ArrowButtonWrapper>
 					</ImageContainer>
 					<DataExplanation>

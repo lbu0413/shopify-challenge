@@ -15,6 +15,7 @@ const StyledDatePicker = styled(DatePicker)`
 	cursor: pointer;
 	border: none;
 	box-shadow: rgba(0, 0, 0, 0.75) 2px 2px 2px 0px;
+	-webkit-appearance: none;
 	&:focus {
 		outline: none;
 		border: none;

@@ -11,7 +11,7 @@ const StyledLike = styled.div`
 	}
 	.dataLike i {
 		font-size: 1.5rem;
-		margin: 5px;
+		margin: 5px 5px 5px 0px;
 		cursor: pointer;
 	}
 	.fa-heart {
