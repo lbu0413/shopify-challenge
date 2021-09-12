@@ -21,6 +21,9 @@ const StyledLike = styled.div`
 		.dataLike {
 			width: 400px;
 		}
+		.dataLike i {
+			font-size: 1.2rem;
+		}
 	}
 `;
 

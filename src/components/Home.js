@@ -15,6 +15,9 @@ const StyledHome = styled.div`
 	& > header {
 		display: flex;
 	}
+	@media (max-width: 720px) {
+		width: 100%;
+	}
 `;
 const ImageContainer = styled.section`
 	& > img {
@@ -32,10 +35,10 @@ const ImageContainer = styled.section`
 	align-items: end;
 	margin-bottom: 20px;
 
-	@media (max-width: 800px) {
+	@media (max-width: 720px) {
 		& > img {
-			width: 300px;
-			height: 300px;
+			width: 250px;
+			height: 250px;
 		}
 	}
 `;
@@ -58,6 +61,11 @@ const ArrowButtonWrapper = styled(Wrapper)`
 		font-size: 2rem;
 		cursor: pointer;
 	}
+	@media (max-width: 720px) {
+		& > i {
+			font-size: 1.4rem;
+		}
+	}
 `;
 
 const DataExplanation = styled.section`
@@ -72,7 +80,7 @@ const DataExplanation = styled.section`
 		justify-content: flex-end;
 		margin: 20px;
 	}
-	@media (max-width: 800px) {
+	@media (max-width: 720px) {
 		width: 80%;
 		& > p {
 			font-size: 13px;
@@ -83,6 +91,9 @@ const DataExplanation = styled.section`
 const Title = styled.h2`
 	width: 80%;
 	text-align: center;
+	@media (max-width: 720px) {
+		font-size: 16px;
+	}
 `;
 
 const initialData = {

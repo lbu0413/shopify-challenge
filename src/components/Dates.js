@@ -23,6 +23,9 @@ const StyledDatePicker = styled(DatePicker)`
 	&:hover {
 		box-shadow: rgba(0, 0, 0, 2) 3px 3px 3px 0px;
 	}
+	@media (max-width: 720px) {
+		font-size: 13px;
+	}
 `;
 
 const Dates = ({ setSelectedDate, selectedDate }) => {
