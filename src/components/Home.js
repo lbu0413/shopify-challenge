@@ -88,8 +88,8 @@ const Home = () => {
 	const [selectedDate, setSelectedDate] = useState(new Date());
 
 	useEffect(() => {
+		setLoading(true);
 		const fetch = async () => {
-			setLoading(true);
 			const { data, status } = await client(formatDate(selectedDate));
 			if (status === 200) setNasaData(data);
 			setLoading(false);
@@ -106,42 +106,37 @@ const Home = () => {
 	};
 	return (
 		<>
-			{loading ? (
-				<Loader />
-			) : (
-				<StyledHome>
-					<header>
-						<Dates
-							nasaData={nasaData}
-							selectedDate={selectedDate}
-							setSelectedDate={setSelectedDate}
-						/>
-					</header>
-					<Wrapper>
-						<Title>{nasaData.title}</Title>
-						<ImageContainer>
-							<ArrowButtonWrapper onClick={() => handleDate(-1)}>
+			<StyledHome>
+				<header>
+					<Dates
+						nasaData={nasaData}
+						selectedDate={selectedDate}
+						setSelectedDate={setSelectedDate}
+					/>
+				</header>
+				<Wrapper>
+					<Title>{nasaData.title}</Title>
+					<ImageContainer>
+						<ArrowButtonWrapper onClick={() => handleDate(-1)}>
+							{formatDate(selectedDate) !==
+							formatDate(new Date("06-16-1995")) ? (
 								<i className="fas fa-chevron-left"></i>
-							</ArrowButtonWrapper>
-							<img src={nasaData.url} alt={nasaData.title} />
-							<ArrowButtonWrapper onClick={() => handleDate()}>
-								{formatDate(selectedDate) !== formatDate(new Date()) ? (
-									<i className="fas fa-chevron-right"></i>
-								) : null}
-							</ArrowButtonWrapper>
-						</ImageContainer>
-						<Like selectedDate={selectedDate} />
-						<DataExplanation>
-							<p>{nasaData.explanation}</p>
-							{nasaData.copyright ? (
-								<p>©{nasaData.copyright}</p>
-							) : (
-								<p>{null}</p>
-							)}
-						</DataExplanation>
-					</Wrapper>
-				</StyledHome>
-			)}
+							) : null}
+						</ArrowButtonWrapper>
+						<img src={nasaData.url} alt={nasaData.title} />
+						<ArrowButtonWrapper onClick={() => handleDate()}>
+							{formatDate(selectedDate) !== formatDate(new Date()) ? (
+								<i className="fas fa-chevron-right"></i>
+							) : null}
+						</ArrowButtonWrapper>
+					</ImageContainer>
+					{loading ? <Loader /> : <Like selectedDate={selectedDate} />}
+					<DataExplanation>
+						<p>{nasaData.explanation}</p>
+						{nasaData.copyright ? <p>©{nasaData.copyright}</p> : <p>{null}</p>}
+					</DataExplanation>
+				</Wrapper>
+			</StyledHome>
 		</>
 	);
 };

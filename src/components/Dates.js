@@ -19,6 +19,10 @@ const StyledDatePicker = styled(DatePicker)`
 	&:focus {
 		outline: none;
 		border: none;
+		box-shadow: rgba(0, 0, 0, 2) 2px 2px 2px 0px;
+	}
+	&:hover {
+		box-shadow: rgba(0, 0, 0, 2) 2px 2px 2px 0px;
 	}
 `;
 
@@ -30,7 +34,10 @@ const Dates = ({ setSelectedDate, selectedDate }) => {
 				onChange={(date) => setSelectedDate(date)}
 				dateFormat="yyyy-MM-dd"
 				maxDate={new Date()}
+				minDate={new Date("06-16-1995")}
 				showYearDropdown
+				scrollableYearDropdown
+				yearDropdownItemNumber={30}
 			/>
 		</StyledDates>
 	);
