@@ -36,10 +36,19 @@ npm start
 ## My Approach
 * I wanted to make a simple application that not only covers all the required functionalities but also gives users an impression of clean and simple User Interface of web application.
 * I tried best to organize directories and files of the project and write codes with modern ES6 syntax.
-
 * Each image can be liked and "unliked" and save likes if the user leaves or reloads the page using localStorage.
 * Save each "date" as the key and "likeData" object as the value
-![image](https://user-images.githubusercontent.com/66400448/133149275-92ce9464-6eee-49d6-98d2-d408fd0258f0.png)
+* Added a date-picker to be able to browse photos starting from a specific date
+* Added a loading state while awaiting NASA's API to return data
+<p align="center">
+ <img src="https://github.com/lbu0413/shopify-challenge/blob/main/src/gif/likeDemo.gif" width="500" height="500"/>
+ <img src="https://user-images.githubusercontent.com/66400448/133149275-92ce9464-6eee-49d6-98d2-d408fd0258f0.png"/>
+</p>
+
+
+
+
+
 
 
 
