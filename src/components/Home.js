@@ -53,8 +53,8 @@ const Wrapper = styled.main`
 `;
 
 const ArrowButtonWrapper = styled(Wrapper)`
-	.hidden {
-		visibility: hidden;
+	.cannotPress {
+		color: #acacac;
 	}
 	& > i {
 		color: #1f1f1f;
@@ -148,7 +148,7 @@ const Home = () => {
 									className="fas fa-chevron-left"
 									onClick={() => handleDate(-1)}></i>
 							) : (
-								<i className="fas fa-chevron-left hidden"></i>
+								<i className="fas fa-chevron-left cannotPress"></i>
 							)}
 						</ArrowButtonWrapper>
 						<img src={nasaData.url} alt={nasaData.title} />
@@ -158,7 +158,7 @@ const Home = () => {
 									className="fas fa-chevron-right"
 									onClick={() => handleDate()}></i>
 							) : (
-								<i className="fas fa-chevron-right hidden"></i>
+								<i className="fas fa-chevron-right cannotPress"></i>
 							)}
 						</ArrowButtonWrapper>
 					</ImageContainer>
