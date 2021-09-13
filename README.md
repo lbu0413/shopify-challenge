@@ -1,4 +1,6 @@
-# Shopify Frontend Developer Intern Challenge - Winter 2022
+# Shopify Frontend Developer Intern Challenge <img src="https://user-images.githubusercontent.com/66400448/133150346-26ea47bf-bbba-4477-9d1b-25c96c3359c5.png" alt="shopify-icon" width="40" />
+
+
 
 
 
