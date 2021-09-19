@@ -21,7 +21,8 @@ const StyledHome = styled.div`
 	}
 `;
 const ImageContainer = styled.section`
-	& > img {
+	& > img,
+	iframe {
 		width: 400px;
 		height: 400px;
 		border: white;
@@ -37,7 +38,8 @@ const ImageContainer = styled.section`
 	margin-bottom: 20px;
 
 	@media (max-width: 720px) {
-		& > img {
+		& > img,
+		iframe {
 			width: 250px;
 			height: 250px;
 		}
@@ -151,7 +153,14 @@ const Home = () => {
 								<i className="fas fa-chevron-left cannotPress"></i>
 							)}
 						</ArrowButtonWrapper>
-						<img src={nasaData.url} alt={nasaData.title} />
+						{nasaData.media_type === "image" ? (
+							<img src={nasaData.url} alt={nasaData.title} />
+						) : nasaData.media_type === "video" ? (
+							<iframe
+								src={nasaData.url}
+								alt={nasaData.title}
+								title={nasaData.title}></iframe>
+						) : null}
 						<ArrowButtonWrapper>
 							{formatDate(selectedDate) !== formatDate(new Date()) ? (
 								<i
